@@ -18,7 +18,35 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Manrope and Fraunces.
+
+## Despliegue en VPS
+
+Comandos básicos para preparar y levantar el proyecto en producción:
+
+```bash
+npm install
+npm run build
+pm2 start npm --name daka-main-web -- run start
+pm2 save
+```
+
+Con `output: "standalone"` también queda disponible el script opcional:
+
+```bash
+npm run start:standalone
+```
+
+Para mantenimiento después de subir cambios:
+
+```bash
+git pull
+npm install
+npm run build
+pm2 restart daka-main-web
+```
+
+Nginx debe actuar como reverse proxy hacia el puerto donde esté escuchando Next.js, normalmente `3000` si se usa `npm run start` sin configurar otro puerto. El favicon actual está en `app/favicon.ico`.
 
 ## Learn More
 
