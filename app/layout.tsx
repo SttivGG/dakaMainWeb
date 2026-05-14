@@ -26,7 +26,11 @@ export const metadata: Metadata = {
     "Putumayo",
     "Colombia",
     "Daka Web",
-  ],
+  ],icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     title: "Daka Web | Landing pages y páginas web para negocios",
     description:
