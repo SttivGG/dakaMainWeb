@@ -1,16 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dakaweb.com"),
@@ -26,7 +15,8 @@ export const metadata: Metadata = {
     "Putumayo",
     "Colombia",
     "Daka Web",
-  ],icons: {
+  ],
+  icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
     apple: "/icon.png",
@@ -47,12 +37,37 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeScript = `
+    (() => {
+      try {
+        const storageKey = "daka-theme";
+        const storedTheme = localStorage.getItem(storageKey);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = storedTheme === "light" || storedTheme === "dark"
+          ? storedTheme
+          : prefersDark ? "dark" : "light";
+
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        document.documentElement.dataset.theme = theme;
+      } catch {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  `;
+
   return (
     <html
       lang="es"
-      className={`${manrope.variable} ${fraunces.variable} h-full antialiased`}
+      className="h-full antialiased font-sans"
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-body">{children}</body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body suppressHydrationWarning className="min-h-full flex flex-col font-sans">
+        {children}
+      </body>
     </html>
   );
 }

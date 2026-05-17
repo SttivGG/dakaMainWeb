@@ -1,96 +1,143 @@
+"use client";
+
+import { useState } from "react";
+
+import Reveal from "@/components/Reveal";
+
 const processSteps = [
   {
-    number: "01",
+    number: "1",
     title: "Hablamos de tu negocio",
     description:
       "Conocemos tu oferta, tus clientes y lo que necesitas comunicar para generar confianza desde el primer vistazo.",
     accent: "Conversación inicial",
+    image: "/assets/images/hablarDeNegocios.jpg",
   },
   {
-    number: "02",
+    number: "2",
     title: "Organizamos la estructura",
     description:
       "Definimos secciones, textos, imágenes y llamados a la acción para que la página tenga intención comercial.",
     accent: "Estrategia comercial",
+    image: "/assets/images/organizarEstructura.jpg",
   },
   {
-    number: "03",
+    number: "3",
     title: "Diseñamos y desarrollamos",
     description:
       "Construimos una experiencia rápida, responsive y visualmente premium, pensada para verse bien en celular.",
     accent: "Diseño responsive",
+    image: "/assets/images/diseñoYdesarrollo.jpg",
   },
   {
-    number: "04",
+    number: "4",
     title: "Nos encargamos de todo",
     description:
       "Publicamos la página, conectamos WhatsApp, dejamos el sitio funcionando y listo para que puedas compartirlo.",
     accent: "Sitio publicado",
+    image: "/assets/images/nosencargamosdetodo.jpeg",
   },
 ];
 
 export default function Process() {
+  const [activeStep, setActiveStep] = useState<string | null>(null);
+
   return (
     <section
       id="proceso"
-      className="relative z-10 overflow-hidden border-b border-[#F5EFE3]/10 bg-gradient-to-b from-[#0B1411] via-[#07110F] to-[#11100D] text-[#F5EFE3]"
+      className="relative z-10 overflow-hidden bg-[var(--section)] text-[var(--foreground)]"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(217,164,65,0.14),transparent_32%),radial-gradient(circle_at_74%_58%,rgba(88,215,196,0.13),transparent_38%),linear-gradient(180deg,rgba(7,17,15,0)_0%,rgba(17,16,13,0.55)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:linear-gradient(135deg,rgba(217,164,65,0.5)_1px,transparent_1px),linear-gradient(45deg,rgba(124,245,213,0.38)_1px,transparent_1px)] [background-size:52px_52px,82px_82px]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D9A441]/36 to-transparent" />
-      <div className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#D9A441]/8 blur-3xl" />
-      <div className="pointer-events-none absolute right-[-10%] bottom-16 h-96 w-96 rounded-full bg-[#58D7C4]/9 blur-3xl" />
-
-      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:py-[6.5rem]">
-        <div className="max-w-3xl">
-          <p className="text-xs font-black uppercase tracking-[0.3em] text-[#D9A441]">
+      <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-28 lg:py-32">
+        <Reveal className="mx-auto max-w-4xl text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--muted)]">
             PROCESO
           </p>
-          <h2 className="mt-4 max-w-3xl font-display text-3xl font-black leading-[1.08] tracking-normal text-[#F5EFE3] sm:text-4xl lg:text-5xl">
+          <h2 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-black leading-[1.08] tracking-normal text-[var(--foreground)] sm:text-5xl lg:text-6xl">
             De la idea a tu página publicada, sin enredos.
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-[#F5EFE3]/72 sm:text-lg sm:leading-8">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--muted-strong)] sm:text-lg sm:leading-8">
             Nos encargamos de convertir la información de tu negocio en una página clara,
             moderna y lista para recibir clientes.
           </p>
-        </div>
+        </Reveal>
 
         <div className="relative mt-14 lg:mt-16">
-          <div className="pointer-events-none absolute left-7 top-6 z-0 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-[#D9A441]/0 via-[#D9A441]/20 to-[#58D7C4]/0 md:hidden" />
-          <div className="pointer-events-none absolute left-[9%] right-[9%] top-9 z-0 hidden h-px bg-gradient-to-r from-transparent via-[#D9A441]/18 to-transparent md:block" />
-          <div className="pointer-events-none absolute left-[9%] right-[9%] top-9 z-0 hidden h-px bg-gradient-to-r from-transparent via-[#58D7C4]/16 to-transparent blur-sm md:block" />
+          <div className="pointer-events-none absolute left-7 top-6 z-0 h-[calc(100%-3rem)] w-px bg-[var(--border-strong)] md:hidden" />
+          <div className="pointer-events-none absolute left-[9%] right-[9%] top-9 z-0 hidden h-px bg-[var(--border-strong)] md:block" />
 
           <div className="relative z-10 grid items-stretch gap-5 md:grid-cols-4 md:gap-4 xl:gap-5">
-            {processSteps.map((step) => (
-              <article
-                key={step.number}
-                className="group relative z-10 flex h-full min-h-[18rem] flex-col overflow-hidden rounded-[1.45rem] border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#58D7C4]/28 hover:bg-white/[0.045] hover:shadow-[0_18px_48px_rgba(88,215,196,0.1)] motion-reduce:transform-none motion-reduce:transition-none lg:p-7"
-              >
-                <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-[#D9A441]/65 via-[#58D7C4]/32 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100 motion-reduce:transition-none [background-image:radial-gradient(circle_at_20%_0%,rgba(217,164,65,0.13),transparent_34%),radial-gradient(circle_at_95%_18%,rgba(88,215,196,0.12),transparent_34%)]" />
+            {processSteps.map((step, index) => {
+              const isActive = activeStep === step.number;
 
-                <div className="relative z-10 flex flex-1 flex-col">
-                  <div className="relative mb-5 flex w-full justify-center">
-                    <span className="mx-auto grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#D9A441]/25 bg-[#07110F]/82 text-center text-sm font-black leading-none tabular-nums text-[#F5EFE3] shadow-[0_0_28px_rgba(217,164,65,0.12),inset_0_0_0_1px_rgba(245,239,227,0.04)] backdrop-blur-md transition duration-300 group-hover:border-[#58D7C4]/42 group-hover:text-[#7CF5D5] group-hover:shadow-[0_0_32px_rgba(88,215,196,0.16)]">
-                      <span className="translate-y-px leading-none">
+              return (
+                <Reveal
+                  key={step.number}
+                  className="h-full"
+                  delay={index * 90}
+                >
+                  <article
+                    className="group relative z-10 flex h-full min-h-[18rem] flex-col overflow-hidden rounded-[1.45rem] border border-[var(--border)] bg-[var(--surface-soft)] p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[var(--surface)] hover:shadow-[0_20px_58px_rgba(0,0,0,0.07)] motion-reduce:transform-none motion-reduce:transition-none lg:p-7"
+                    onClick={() =>
+                      setActiveStep((current) =>
+                        current === step.number ? null : step.number,
+                      )
+                    }
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`${isActive ? "Ocultar" : "Mostrar"} paso ${step.number}: ${step.title}`}
+                    aria-expanded={isActive}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setActiveStep((current) =>
+                          current === step.number ? null : step.number,
+                        );
+                      }
+                    }}
+                  >
+                    <div
+                      className={`relative z-10 flex flex-1 flex-col justify-start pb-20 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        isActive
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-4 opacity-0"
+                      } group-focus:translate-y-0 group-focus:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 md:group-focus:translate-y-0 md:group-focus:opacity-100 md:group-focus-visible:translate-y-0 md:group-focus-visible:opacity-100 motion-reduce:transition-none`}
+                    >
+                      <div className="inline-flex max-w-full items-center self-center whitespace-normal rounded-full bg-[var(--surface)] px-3 py-1 text-center text-[10px] font-bold uppercase leading-5 tracking-[0.16em] text-[var(--muted)] ring-1 ring-[var(--border)] sm:text-[11px]">
+                        {step.accent}
+                      </div>
+                      <h3 className="mt-5 font-display text-lg font-extrabold leading-tight tracking-normal text-[var(--primary)] xl:text-xl">
+                        {step.title}
+                      </h3>
+                      <p className="mt-4 text-[15px] leading-7 text-[var(--muted-strong)]">
+                        {step.description}
+                      </p>
+                    </div>
+
+                    <div
+                      className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 flex items-center justify-center overflow-hidden border border-white/70 bg-cover bg-center shadow-[0_-14px_45px_rgba(0,0,0,0.18)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        isActive
+                          ? "h-16 rounded-b-[1.45rem] rounded-t-none"
+                          : "h-full rounded-[1.45rem]"
+                      } group-focus:h-16 group-focus:rounded-b-[1.45rem] group-focus:rounded-t-none group-focus-visible:h-16 group-focus-visible:rounded-b-[1.45rem] group-focus-visible:rounded-t-none md:h-full md:rounded-[1.45rem] md:group-hover:h-16 md:group-hover:rounded-b-[1.45rem] md:group-hover:rounded-t-none md:group-focus:h-16 md:group-focus:rounded-b-[1.45rem] md:group-focus:rounded-t-none md:group-focus-visible:h-16 md:group-focus-visible:rounded-b-[1.45rem] md:group-focus-visible:rounded-t-none motion-reduce:transition-none`}
+                      style={{ backgroundImage: `url(${step.image})` }}
+                    >
+                      <div
+                        className={`absolute inset-0 transition-colors duration-700 ${
+                          isActive ? "bg-black/25" : "bg-black/35"
+                        } group-focus:bg-black/25 group-focus-visible:bg-black/25 md:bg-black/35 md:group-hover:bg-black/25 md:group-focus:bg-black/25 md:group-focus-visible:bg-black/25 motion-reduce:transition-none`}
+                      />
+                      <span
+                        className={`relative z-10 translate-y-px font-display font-black leading-none tabular-nums text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.45)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                          isActive ? "text-2xl" : "text-7xl sm:text-8xl"
+                        } group-focus:text-2xl group-focus-visible:text-2xl md:text-8xl md:group-hover:text-2xl md:group-focus:text-2xl md:group-focus-visible:text-2xl motion-reduce:transition-none`}
+                      >
                         {step.number}
                       </span>
-                    </span>
-                    <span className="absolute right-0 top-1 h-2 w-2 rounded-full bg-[#7CF5D5]/85 shadow-[0_0_14px_rgba(124,245,213,0.48)]" />
-                  </div>
-
-                  <div className="inline-flex max-w-full items-center self-center whitespace-normal rounded-full border border-[#D9A441]/15 bg-[#D9A441]/[0.055] px-3 py-1 text-center text-[10px] font-black uppercase leading-5 tracking-[0.18em] text-[#D9A441]/88 sm:text-[11px]">
-                    {step.accent}
-                  </div>
-                  <h3 className="mt-5 font-display text-lg font-extrabold leading-tight tracking-normal text-[#F5EFE3] xl:text-xl">
-                    {step.title}
-                  </h3>
-                  <p className="mt-4 text-[15px] leading-7 text-[#F5EFE3]/68">
-                    {step.description}
-                  </p>
-                </div>
-              </article>
-            ))}
+                    </div>
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </div>

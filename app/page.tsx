@@ -9,7 +9,7 @@ import Services from "@/components/Services";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#07110F] text-[#F5EFE3]">
+    <main className="relative min-h-screen overflow-hidden bg-[var(--background)] text-[var(--foreground)]">
       <LandingBackground />
       <Header />
       <Hero />

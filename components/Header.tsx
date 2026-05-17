@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { whatsappUrl } from "@/components/landingShared";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "Inicio", href: "/" },
@@ -35,36 +36,35 @@ export default function Header() {
     <header
       className={`fixed left-0 right-0 top-0 z-50 border-b transition-all duration-300 ease-out ${
         isScrolled
-          ? "border-[#F5EFE3]/10 bg-[#07110F]/80 shadow-lg shadow-black/20 backdrop-blur-xl supports-[backdrop-filter]:bg-[#07110F]/70"
-          : "border-transparent bg-transparent shadow-none"
+          ? "border-[var(--header-border)] bg-[var(--header-bg-scrolled)] shadow-sm shadow-black/[0.03] backdrop-blur-xl"
+          : "border-[var(--header-border)] bg-[var(--header-bg)] shadow-none backdrop-blur-md"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-8 sm:py-4">
         <Link
           href="/"
           className="group inline-flex min-w-0 items-center gap-3 text-lg font-semibold"
           onClick={() => setIsMenuOpen(false)}
         >
           <Image
-            src="/assets/images/isotipo1SF.png"
+            src="/assets/images/dakaLogo.png"
             alt="Isotipo Daka Web"
             width={44}
             height={44}
-            className="h-9 w-9 shrink-0 object-contain"
+            className="h-10 w-9 shrink-0 object-contain"
             priority
           />
 
           <span className="tracking-normal whitespace-nowrap">
-            <span className="text-[#F5EFE3]">Daka</span>{" "}
-            <span className="text-[#D9A441]">Web</span>
-          </span>
+            <span className="text-[var(--foreground)]">Daka</span>{" "}
+             </span>
         </Link>
 
-        <div className="hidden items-center gap-7 text-sm font-medium text-[#F5EFE3]/70 md:flex">
+        <div className="hidden items-center gap-8 text-sm font-medium text-[var(--muted-strong)] md:flex">
           {navLinks.map((item) => (
             <a
               key={item.href}
-              className="transition duration-200 hover:text-[#D9A441]"
+              className="transition duration-200 hover:text-[var(--link)]"
               href={item.href}
             >
               {item.label}
@@ -75,16 +75,18 @@ export default function Header() {
         <div className="flex shrink-0 items-center gap-2">
           <a
             href={whatsappUrl}
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#D9A441]/25 bg-[#F5EFE3] px-4 text-sm font-semibold text-[#11100D] shadow-lg shadow-[#D9A441]/10 transition duration-200 hover:-translate-y-0.5 hover:bg-[#D9A441] hover:shadow-[#D9A441]/20 focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#07110F] sm:px-5"
+            className="hidden min-h-11 items-center justify-center rounded-full bg-[var(--primary)] px-4 text-sm font-semibold text-white shadow-sm shadow-black/[0.06] transition duration-200 hover:bg-[var(--primary-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--focus)] focus:ring-offset-2 focus:ring-offset-[var(--background)] sm:inline-flex sm:px-5"
             target="_blank"
             rel="noreferrer"
           >
             WhatsApp
           </a>
 
+          <ThemeToggle />
+
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#F5EFE3]/12 bg-[#F5EFE3]/[0.055] text-[#F5EFE3] shadow-lg shadow-black/10 backdrop-blur transition duration-200 hover:border-[#D9A441]/45 hover:bg-[#D9A441]/10 focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#07110F] md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--overlay-strong)] text-[var(--foreground)] shadow-sm shadow-black/[0.04] backdrop-blur transition duration-200 hover:bg-[var(--surface-soft)] focus:outline-none focus:ring-2 focus:ring-[var(--focus)] focus:ring-offset-2 focus:ring-offset-[var(--background)] md:hidden"
             aria-label={isMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
@@ -120,12 +122,12 @@ export default function Header() {
         }`}
       >
         {isMenuOpen && (
-          <div className="overflow-hidden rounded-2xl border border-[#F5EFE3]/10 bg-[#07110F]/92 p-2 shadow-2xl shadow-black/35 backdrop-blur-xl supports-[backdrop-filter]:bg-[#07110F]/82">
+          <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--overlay-strong)] p-2 shadow-xl shadow-black/[0.07] backdrop-blur-xl">
             {navLinks.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="flex min-h-12 items-center rounded-xl px-4 text-base font-semibold text-[#F5EFE3]/82 transition duration-200 hover:bg-[#F5EFE3]/[0.055] hover:text-[#D9A441] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#07110F]"
+                className="flex min-h-12 items-center rounded-xl px-4 text-base font-semibold text-[var(--muted-strong)] transition duration-200 hover:bg-[var(--background)] hover:text-[var(--link)] focus:outline-none focus:ring-2 focus:ring-[var(--focus)] focus:ring-offset-2 focus:ring-offset-[var(--surface)]"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

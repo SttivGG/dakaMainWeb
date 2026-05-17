@@ -1,29 +1,108 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-body: var(--font-manrope);
-  --font-display: var(--font-fraunces);
+  color-scheme: light;
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --section: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #f5f5f7;
+  --surface-muted: #e8e8ed;
+  --primary: #d39033;
+  --primary-hover: #b87422;
+  --primary-soft: rgba(211, 144, 51, 0.1);
+  --accent: #d39033;
+  --accent-hover: #b87422;
+  --accent-soft: rgba(211, 144, 51, 0.08);
+  --link: #0066cc;
+  --link-hover: #004a99;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --muted: #6e6e73;
+  --muted-strong: #424245;
+  --focus: #0066cc;
+  --overlay: rgba(255, 255, 255, 0.76);
+  --overlay-strong: rgba(255, 255, 255, 0.9);
+  --header-bg: rgba(255, 255, 255, 0.78);
+  --header-bg-scrolled: rgba(255, 255, 255, 0.88);
+  --header-border: rgba(0, 0, 0, 0.08);
+  --card-bg: #ffffff;
+  --card-bg-soft: #f5f5f7;
+  --hero-card: #ffffff;
+  --hero-card-soft: #f5f5f7;
+  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.06);
+  --footer-bg: #1d1d1f;
+  --footer-fg: #f5f5f7;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body: var(--font-sans);
+  --font-display: var(--font-sans);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #07110f;
+  --foreground: #f5efe3;
+  --section: #0b1412;
+  --surface: #11100d;
+  --surface-soft: #101c18;
+  --surface-muted: #16231f;
+  --primary: #d39033;
+  --primary-hover: #e0a24a;
+  --primary-soft: rgba(217, 164, 65, 0.16);
+  --accent: #d9a441;
+  --accent-hover: #f2d48a;
+  --accent-soft: rgba(217, 164, 65, 0.16);
+  --link: #d9a441;
+  --link-hover: #f2d48a;
+  --border: rgba(245, 239, 227, 0.12);
+  --border-strong: rgba(245, 239, 227, 0.2);
+  --muted: #c8bfae;
+  --muted-strong: #e8ddca;
+  --focus: #d9a441;
+  --overlay: rgba(7, 17, 15, 0.76);
+  --overlay-strong: rgba(17, 16, 13, 0.9);
+  --header-bg: rgba(7, 17, 15, 0.78);
+  --header-bg-scrolled: rgba(17, 16, 13, 0.84);
+  --header-border: rgba(245, 239, 227, 0.12);
+  --card-bg: #11100d;
+  --card-bg-soft: #101c18;
+  --hero-card: #11100d;
+  --hero-card-soft: #101c18;
+  --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.32);
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.26);
+  --footer-bg: #070b0a;
+  --footer-fg: #f5efe3;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-body);
-  --font-body: var(--font-manrope);
-  --font-display: var(--font-fraunces);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body: var(--font-sans);
+  --font-display: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.theme-color-transition {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 220ms;
+  transition-timing-function: ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-color-transition {
+    transition-duration: 0.01ms !important;
+  }
 }
